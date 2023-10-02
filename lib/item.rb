@@ -29,4 +29,19 @@ class Item
     end
   end
 
+  def can_be_archived?
+    current_date = Date.today
+    if current_date - @publish_date >= 10
+      true
+    else
+      false
+  end
+
+  def move_to_archive
+    if can_be_archived?
+      @archived = true
+    else
+      @archived = false
+  end
+
 end
