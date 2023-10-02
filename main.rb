@@ -22,25 +22,28 @@ class Main
 
   def start
     user_input = 0
-    while user_input!=10
-      puts "1) add a book"
-      puts "2) add a music album"
-      puts "3) add a game"
-      puts "4) List all books"
-      puts "5) List all music albums"
-      puts "6) list of games"
+    while user_input != 10
+      puts '1) add a book'
+      puts '2) add a music album'
+      puts '3) add a game'
+      puts '4) List all books'
+      puts '5) List all music albums'
+      puts '6) list of games'
       puts "7) list all genres (eg 'Comedy', 'Thriller')"
       puts "8) list all labels (eg 'Gift', 'New')"
       puts "9) List all authors (e.g. 'Stephen King')"
-      puts "10) Exit"
+      puts '10) Exit'
       user_input = gets.chomp.strip.to_i
-      if OPERATION_MAP.key?(user_input)
-        @app.send(OPERATION_MAP[user_input])
-      elsif user_input == 10
-        puts "Thank you for using our application!"
-      else
-        puts "invalid"
-      end
+    end
+  end
+
+  def choise_map(user_input)
+    if OPERATION_MAP.key?(user_input)
+      @app.send(OPERATION_MAP[user_input])
+    elsif user_input == 10
+      puts 'Thank you for using our application!'
+    else
+      puts 'invalid'
     end
   end
 end
