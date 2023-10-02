@@ -34,6 +34,7 @@ class Main
       puts "9) List all authors (e.g. 'Stephen King')"
       puts '10) Exit'
       user_input = gets.chomp.strip.to_i
+      choise_map(user_input)
     end
   end
 
