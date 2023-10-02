@@ -4,8 +4,14 @@ require 'pry'
 class Main
   OPERATION_MAP = {
     1 => :add_book,
-    2 => :add_music,
-    3 => :add_game
+    2 => :add_music_album,
+    3 => :add_game,
+    4 => :list_books,
+    5 => :list_music_albums,
+    6 => :list_games,
+    7 => :list_geners,
+    8 => :list_labels,
+    9 => :list_authors
   }.freeze
 
   attr_accessor :app
