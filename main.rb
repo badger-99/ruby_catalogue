@@ -32,15 +32,14 @@ class Main
       puts "7) list all genres (eg 'Comedy', 'Thriller')"
       puts "8) list all labels (eg 'Gift', 'New')"
       puts "9) List all authors (e.g. 'Stephen King')"
-      print "Enter your choise : "
+      puts "10) Exit"
       user_input = gets.chomp.strip.to_i
-      case user_input
-      when OPERATION_MAP.key?(user_input)
-        @app.OPERATION_MAP[user_input]
-      when 7
-        puts 'Thank you for using our application'
+      if OPERATION_MAP.key?(user_input)
+        @app.send(OPERATION_MAP[user_input])
+      elsif user_input == 10
+        puts "Thank you for using our application!"
       else
-        puts 'invalid input!'
+        puts "invalid"
       end
     end
   end
