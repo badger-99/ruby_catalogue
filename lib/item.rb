@@ -7,7 +7,7 @@ class Item
     set_genre(genre)
     set_author(author)
     set_label(label)
-    @publish_date = Date.parse_date(date)
+    @publish_date = Date.git parse_date(date)
     @archived = archived
   end
 
