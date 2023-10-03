@@ -23,6 +23,14 @@ class App
     end
 
     author_data_feed
+
+    label_title = ''
+    until check_string?(label_title)
+      print 'Enter label title : '
+      label_title = gets.chomp
+      puts ''
+      puts 'Invalid label title format' unless check_string?(label_title)
+    end
   end
 
   def add_music_album
