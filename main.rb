@@ -33,6 +33,7 @@ class Main
       puts "8) list all labels (eg 'Gift', 'New')"
       puts "9) List all authors (e.g. 'Stephen King')"
       puts '10) Exit'
+      print 'Enter your choice : '
       user_input = gets.chomp.strip.to_i
       choise_map(user_input)
     end
