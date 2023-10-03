@@ -10,6 +10,8 @@ class Item
   end
 
   def add_genre(genre)
+    return unless genre.insrtance_of?(Genre)
+
     @genre = genre
     genre.add_items(self) unless genre.items.include?(self)
   end
