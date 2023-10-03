@@ -167,7 +167,13 @@ class App
   end
 
   def list_labels
-    # TODO: list labels
+    labels.each_with_index do |label, index|
+      puts ''
+      puts "Label #{index + 1}"
+      puts "Title: #{label.title}"
+      puts "Color: #{label.color}"
+      puts ''
+    end
   end
 
   def list_authors
