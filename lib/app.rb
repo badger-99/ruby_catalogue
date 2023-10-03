@@ -1,6 +1,8 @@
 require 'date'
 require_relative 'author'
 require_relative 'game'
+require_relative 'book'
+require_relative 'label'
 
 class App
   attr_accessor :games, :authors
@@ -12,6 +14,13 @@ class App
 
   def add_book
     # ** add book logic
+    genre = ''
+    until check_string?(genre)
+      print 'Enter book genre : '
+      genre = gets.chomp
+      puts ''
+      puts 'Invalid genre format' unless check_string?(genre)
+    end
   end
 
   def add_music_album
