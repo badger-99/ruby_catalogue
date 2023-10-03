@@ -21,6 +21,8 @@ class App
       puts ''
       puts 'Invalid genre format' unless check_string?(genre)
     end
+
+    author_data_feed
   end
 
   def add_music_album
