@@ -47,6 +47,14 @@ class App
       puts ''
       puts 'Invalid date' unless check_date?(publish_date)
     end
+
+    publisher = ''
+    until check_string?(publisher)
+      print 'Enter publisher : '
+      publisher = gets.chomp
+      puts ''
+      puts 'Invalid publisher format' unless check_string?(publisher)
+    end
   end
 
   def add_music_album
