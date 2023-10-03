@@ -3,10 +3,11 @@ require_relative 'author'
 require_relative 'game'
 
 class App
-  attr_accessor :games
+  attr_accessor :games, :authors
 
   def initialize
     @games = []
+    @authors = []
   end
 
   def add_book
@@ -33,7 +34,7 @@ class App
       puts ''
       puts 'Invalid name format' unless check_string?(author_last_name)
     end
-    Author.new(author_first_name, author_last_name)
+    @authors << Author.new(author_first_name, author_last_name)
   end
 
   def add_game
@@ -101,6 +102,12 @@ class App
   end
 
   def list_authors
-    # TODO: list authors
+    @authors.each_with_index do |author, _index|
+      puts ''
+      puts "author id : #{author.id}"
+      puts "first name : #{author.name}"
+      puts "last name : #{author.last_name}"
+      puts ''
+    end
   end
 end
