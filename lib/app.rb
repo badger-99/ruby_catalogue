@@ -63,6 +63,15 @@ class App
       puts ''
       puts 'Invalid cover state format' unless check_string?(cover_state)
     end
+
+    books << Book.new(
+      genre: genre,
+      author: authors.last,
+      label: Label.new(label_title, label_color),
+      date: publish_date,
+      publisher: publisher,
+      cover_state: cover_state
+    )
   end
 
   def add_music_album
