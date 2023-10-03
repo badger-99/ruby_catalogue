@@ -1,10 +1,11 @@
+require 'date'
 class Item
   attr_accessor :publish_date
   attr_reader :genre
 
   def initialize(date)
     @id = Random.rand(1..1000)
-    @publish_date = Date.parse_date(date)
+    @publish_date = Date.parse(date)
     @archived = false
     @genre = nil
   end
@@ -34,6 +35,6 @@ class Item
 
   def can_be_archived?
     current_date = Date.today
-    current_date - @publish_date >= 10
+    current_date - @publish_date >= 3652
   end
 end
