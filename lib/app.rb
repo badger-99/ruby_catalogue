@@ -27,7 +27,39 @@ class App
   end
 
   def add_game
-    # ** add game logic
+    publish_date = ''
+    until check_date?(publish_date)
+      print 'Enter publish date [YYYY-MM-DD] :'
+      publish_date = gets.chomp
+      puts ''
+      puts 'Invalid date' unless check_date?(publish_date)
+    end
+
+    last_played_at = ''
+    until check_date?(last_played_at) && date_compare(publish_date, last_played_at)
+      print 'Enter last played date [YYYY-MM-DD] :'
+      last_played_at = gets.chomp
+      puts ''
+      puts 'Invalid date, should be greater then publish date' unless check_date?(publish_date) && date_compare(
+        publish_date, last_played_at
+      )
+    end
+    print 'Is it mutliplayer [Y/N] :'
+    multiplayer = gets.chomp == 'Y'
+    puts ''
+    games << Game.new(author_data_feed, publish_date, last_played_at, multiplayer)
+  end
+
+  def check_string?(string)
+    string.match?(/[A-Z]/i)
+  end
+
+  def date_compare(date1, date2)
+    Date.strptime(date1) < Date.strptime(date2)
+  end
+
+  def check_date?(date_string)
+    date_string.match(/^\d{4}-\d{2}-\d{2}$/)
   end
 
   def list_books
