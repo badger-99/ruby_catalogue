@@ -39,6 +39,14 @@ class App
       puts ''
       puts 'Invalid label color format' unless check_string?(label_color)
     end
+
+    publish_date = ''
+    until check_date?(publish_date)
+      print 'Enter publish date [YYYY-MM-DD] : '
+      publish_date = gets.chomp
+      puts ''
+      puts 'Invalid date' unless check_date?(publish_date)
+    end
   end
 
   def add_music_album
