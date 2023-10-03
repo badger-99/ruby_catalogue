@@ -6,3 +6,9 @@ class Author
     @first_name = first_name
     @last_name = last_name
   end
+
+  def add_item(item)
+    item.add_author(self)
+  end
+
+end
