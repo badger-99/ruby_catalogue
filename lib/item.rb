@@ -1,5 +1,5 @@
 class Item
-  attr_accessor :publish_date
+  attr_accessor :publish_date, :label
   attr_reader :genre
 
   def initialize(date)
@@ -21,7 +21,7 @@ class Item
 
   def add_label(label)
     @label = label
-    label.items.push(self) unless label.items.include?(self)
+    label.add_item(self) unless label.items.include?(self)
   end
 
   def can_be_archived?
