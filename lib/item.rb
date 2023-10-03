@@ -1,4 +1,6 @@
 require 'date'
+require_relative 'genre'
+
 class Item
   attr_accessor :publish_date
   attr_reader :genre
@@ -11,10 +13,12 @@ class Item
   end
 
   def add_genre(genre)
-    return unless genre.insrtance_of?(Genre)
-
-    @genre = genre
-    genre.add_items(self) unless genre.items.include?(self)
+    if genre.instance_of?(Genre)
+      @genre = genre
+      genre.add_items(self) unless genre.items.include?(self)
+    else
+      @genre = nil
+    end
   end
 
   def add_author(author)
