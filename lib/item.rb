@@ -13,17 +13,17 @@ class Item
 
   def add_genre(genre)
     @genre = genre
-    genre.array.push(self) unless genre.array.include?(self)
+    genre.items.push(self) unless genre.items.include?(self)
   end
 
   def add_author(author)
     @author = author
-    author.array.push(self) unless author.array.include?(self)
+    author.items.push(self) unless author.items.include?(self)
   end
 
   def add_label(label)
     @label = label
-    label.array.push(self) unless label.array.include?(self)
+    label.items.push(self) unless label.items.include?(self)
   end
 
   def can_be_archived?
