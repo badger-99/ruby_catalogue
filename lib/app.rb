@@ -1,4 +1,14 @@
+require 'date'
+require_relative 'author'
+require_relative 'game'
+
 class App
+  attr_accessor :games
+
+  def initialize
+    @games = []
+  end
+
   def add_book
     # ** add book logic
   end
@@ -63,7 +73,7 @@ class App
   end
 
   def list_books
-    # ** list books logic
+    # TODO: list books
   end
 
   def list_music_albums
@@ -71,7 +81,15 @@ class App
   end
 
   def list_games
-    # TODO: list games
+    @games.each_with_index do |game, index|
+      puts ''
+      puts "game #{index + 1}"
+      puts "author name : #{game.author.first_name} #{game.author.last_name}"
+      puts "publish date : #{game.publish_date}"
+      puts "last played at : #{game.last_played_at}"
+      puts "multiplayer : #{game.multiplayer ? 'YES' : 'NO'}"
+      puts ''
+    end
   end
 
   def list_geners
