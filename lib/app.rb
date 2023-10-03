@@ -31,6 +31,14 @@ class App
       puts ''
       puts 'Invalid label title format' unless check_string?(label_title)
     end
+
+    label_color = ''
+    until check_string?(label_color)
+      print 'Enter label color : '
+      label_color = gets.chomp
+      puts ''
+      puts 'Invalid label color format' unless check_string?(label_color)
+    end
   end
 
   def add_music_album
