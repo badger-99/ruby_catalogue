@@ -13,7 +13,6 @@ class App
   end
 
   def add_book
-    # ** add book logic
     genre = ''
     until check_string?(genre)
       print 'Enter book genre : '
@@ -134,7 +133,17 @@ class App
   end
 
   def list_books
-    # TODO: list books
+    books.each_with_index do |book, index|
+      puts ''
+      puts "Book #{index + 1}"
+      puts "Genre: #{book.genre}"
+      puts "Author: #{book.author.first_name} #{book.author.last_name}"
+      puts "Label: #{book.label.title} (#{book.label.color})"
+      puts "Publish Date: #{book.publish_date}"
+      puts "Publisher: #{book.publisher}"
+      puts "Cover State: #{book.cover_state}"
+      puts "Archived: #{book.archived ? 'YES' : 'NO'}"
+      puts ''
   end
 
   def list_music_albums
