@@ -7,6 +7,25 @@ class App
     # ** add music album logic
   end
 
+  def author_data_feed
+    author_first_name = ''
+    until check_string?(author_first_name)
+      print 'Enter author first name : '
+      author_first_name = gets.chomp
+      puts ''
+      puts 'Invalid name format' unless check_string?(author_first_name)
+    end
+
+    author_last_name = ''
+    until check_string?(author_last_name)
+      print 'Enter author last name : '
+      author_last_name = gets.chomp
+      puts ''
+      puts 'Invalid name format' unless check_string?(author_last_name)
+    end
+    Author.new(author_first_name, author_last_name)
+  end
+
   def add_game
     # ** add game logic
   end
