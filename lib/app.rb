@@ -55,6 +55,14 @@ class App
       puts ''
       puts 'Invalid publisher format' unless check_string?(publisher)
     end
+
+    cover_state = ''
+    until check_string?(cover_state)
+      print 'Enter cover state : '
+      cover_state = gets.chomp
+      puts ''
+      puts 'Invalid cover state format' unless check_string?(cover_state)
+    end
   end
 
   def add_music_album
