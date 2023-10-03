@@ -3,6 +3,7 @@ require_relative 'genre'
 
 class MusicAlbum < Item
   attr_reader :title, :artist
+
   def initialize(date, title, artist, genre, on_spotify: true)
     super(date)
     @title = title
@@ -26,12 +27,12 @@ class AlbumManager
 
   def on_spotify?
     spotify = nil
-    while spotify == nil
+    while spotify.nil?
       print 'Is the album on Spotify? [Y/N]: '
       choice = gets.chomp.downcase
-      if choice = 'y'
+      if choice == 'y'
         spotify = true
-      elsif choice = 'n'
+      elsif choice == 'n'
         spotify = false
       else
         puts 'Enter a valid choice'
@@ -58,7 +59,7 @@ class AlbumManager
 
   def show_music_albums
     @albumn_list.each_index do |album, index|
-      puts "#{index+1}. #{album.title} by #{album.artist}"
+      puts "#{index + 1}. #{album.title} by #{album.artist}"
     end
   end
 
