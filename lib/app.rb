@@ -6,6 +6,20 @@ class App
   attr_accessor :games, :authors
 
   def initialize
+
+  def game_from_json(file_name)
+    game_data = []
+    if file_exist?(file_name)
+      from_json(File.read(file_name)).each do |game|
+        game_author = game['author']
+        author = Author.new(game_author['first_name'], game_author['last_name'])
+        game = Game.new(author, game['publish_date'], game['last_played_at'], game['multiplayer'])
+        game_data << game
+      end
+    end
+    game_data
+  end
+
   def author_from_json(file_name)
     author_data = []
     if file_exist?(file_name)
