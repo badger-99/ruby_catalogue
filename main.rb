@@ -44,6 +44,7 @@ class Main
       @app.send(OPERATION_MAP[user_input])
     elsif user_input == 10
       puts 'Thank you for using our application!'
+      @app.save_data
     else
       puts 'invalid'
     end

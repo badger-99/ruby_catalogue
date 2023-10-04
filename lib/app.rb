@@ -4,16 +4,41 @@ require_relative 'game'
 require_relative 'book'
 require_relative 'label'
 require_relative 'music_album_interface'
+require_relative 'file_io'
 
-class App
+class App < FileIO
   attr_accessor :games, :authors, :books, :labels
 
   def initialize
-    @games = []
-    @authors = []
+    @games = game_from_json('game.json')
+    @authors = author_from_json('author.json')
     @books = []
     @labels = []
     @album_interface = AlbumInterface.new
+    super
+  end
+
+  def game_from_json(file_name)
+    game_data = []
+    if file_exist?(file_name)
+      from_json(File.read(file_name)).each do |game|
+        game_author = game['author']
+        author = Author.new(game_author['first_name'], game_author['last_name'])
+        game = Game.new(author, game['publish_date'], game['last_played_at'], game['multiplayer'])
+        game_data << game
+      end
+    end
+    game_data
+  end
+
+  def author_from_json(file_name)
+    author_data = []
+    if file_exist?(file_name)
+      from_json(File.read(file_name)).each do |author|
+        author_data << Author.new(author['first_name'], author['last_name'])
+      end
+    end
+    author_data
   end
 
   def add_book
@@ -165,5 +190,30 @@ class App
       puts "author name : #{author.first_name} #{author.last_name}"
       puts ''
     end
+  end
+
+  def save_author_data
+    author_data = []
+    File.open('author.json', 'w') do |file|
+      @authors.each do |author|
+        author_data << author.to_hash
+      end
+      file.write(author_data.to_json)
+    end
+  end
+
+  def save_game_data
+    game_data = []
+    File.open('game.json', 'w') do |file|
+      @games.each do |game|
+        game_data << game.to_hash
+      end
+      file.write(game_data.to_json)
+    end
+  end
+
+  def save_data
+    save_author_data
+    save_game_data
   end
 end
