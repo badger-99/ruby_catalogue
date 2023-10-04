@@ -21,6 +21,7 @@ class Main
   end
 
   def start
+    @app.load_data
     user_input = 0
     while user_input != 10
       puts '1) add a book'
@@ -35,14 +36,17 @@ class Main
       puts '10) Exit'
       print 'Enter your choice : '
       user_input = gets.chomp.strip.to_i
-      choise_map(user_input)
+      choice_map(user_input)
     end
   end
 
-  def choise_map(user_input)
+  def choice_map(user_input)
     if OPERATION_MAP.key?(user_input)
       @app.send(OPERATION_MAP[user_input])
     elsif user_input == 10
+      puts 'Saving data ...'
+      @app.save_data
+      puts 'Data saved.'
       puts 'Thank you for using our application!'
       @app.save_data
     else

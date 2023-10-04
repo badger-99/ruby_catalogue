@@ -192,6 +192,16 @@ class App < FileIO
     end
   end
 
+  def save_data
+    @album_interface.save_genres_and_albums_to_file
+    save_author_data
+    save_game_data
+  end
+
+  def load_data
+    @album_interface.load_genres_and_albums_from_file
+  end
+
   def save_author_data
     author_data = []
     File.open('author.json', 'w') do |file|
@@ -210,10 +220,5 @@ class App < FileIO
       end
       file.write(game_data.to_json)
     end
-  end
-
-  def save_data
-    save_author_data
-    save_game_data
   end
 end
