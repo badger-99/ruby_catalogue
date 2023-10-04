@@ -36,7 +36,7 @@ class AlbumInterface
       puts 'There are no albums in the collection.'
     else
       @albumn_list.each_with_index do |album, index|
-        puts "#{index + 1}. #{album.title} by #{album.artist}"
+        puts "#{index + 1}. \"#{album.title}\" by #{album.artist}"
       end
     end
   end
