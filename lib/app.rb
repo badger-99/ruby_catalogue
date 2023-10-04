@@ -1,19 +1,74 @@
 require 'date'
 require_relative 'author'
 require_relative 'game'
+require_relative 'book'
+require_relative 'label'
 require_relative 'music_album_interface'
+require_relative 'file_io'
 
-class App
-  attr_accessor :games, :authors
+class App < FileIO
+  attr_accessor :games, :authors, :books, :labels
 
   def initialize
-    @games = []
-    @authors = []
+    @games = game_from_json('game.json')
+    @authors = author_from_json('author.json')
+    @books = []
+    @labels = []
     @album_interface = AlbumInterface.new
+    super
+  end
+
+  def game_from_json(file_name)
+    game_data = []
+    if file_exist?(file_name)
+      from_json(File.read(file_name)).each do |game|
+        game_author = game['author']
+        author = Author.new(game_author['first_name'], game_author['last_name'])
+        game = Game.new(author, game['publish_date'], game['last_played_at'], game['multiplayer'])
+        game_data << game
+      end
+    end
+    game_data
+  end
+
+  def author_from_json(file_name)
+    author_data = []
+    if file_exist?(file_name)
+      from_json(File.read(file_name)).each do |author|
+        author_data << Author.new(author['first_name'], author['last_name'])
+      end
+    end
+    author_data
   end
 
   def add_book
-    # ** add book logic
+    genre = get_valid_input('Enter book genre : ', method(:check_string?))
+    author = author_data_feed
+    label = create_label
+    publish_date = get_valid_input('Enter publish date [YYYY-MM-DD] : ', method(:check_date?))
+    publisher = get_valid_input('Enter publisher : ', method(:check_string?))
+    cover_state = get_valid_input('Enter cover state : ', method(:check_string?))
+
+    books << Book.new(genre, author, label, publish_date, publisher, cover_state)
+  end
+
+  def get_valid_input(prompt, validation_method)
+    input = ''
+    until validation_method.call(input)
+      print prompt
+      input = gets.chomp
+      puts ''
+      puts 'Invalid input format' unless validation_method.call(input)
+    end
+    input
+  end
+
+  def create_label
+    title = get_valid_input('Enter label title : ', method(:check_string?))
+    color = get_valid_input('Enter label color : ', method(:check_string?))
+    label = Label.new(title, color)
+    labels << label
+    label
   end
 
   def add_music_album
@@ -80,7 +135,18 @@ class App
   end
 
   def list_books
-    # TODO: list books
+    books.each_with_index do |book, index|
+      puts ''
+      puts "Book #{index + 1}"
+      puts "Genre: #{book.genre}"
+      puts "Author: #{book.author.first_name} #{book.author.last_name}" if book.respond_to?(:author) && book.author
+      puts "Label: #{book.label.title} (#{book.label.color})"
+      puts "Publish Date: #{book.publish_date}"
+      puts "Publisher: #{book.publisher}"
+      puts "Cover State: #{book.cover_state}"
+      puts "Archived: #{book.can_be_archived? ? 'YES' : 'NO'}"
+      puts ''
+    end
   end
 
   def list_music_albums
@@ -108,7 +174,13 @@ class App
   end
 
   def list_labels
-    # TODO: list labels
+    labels.each_with_index do |label, index|
+      puts ''
+      puts "Label #{index + 1}"
+      puts "Title: #{label.title}"
+      puts "Color: #{label.color}"
+      puts ''
+    end
   end
 
   def list_authors
@@ -122,9 +194,31 @@ class App
 
   def save_data
     @album_interface.save_genres_and_albums_to_file
+    save_author_data
+    save_game_data
   end
 
   def load_data
     @album_interface.load_genres_and_albums_from_file
+  end
+
+  def save_author_data
+    author_data = []
+    File.open('author.json', 'w') do |file|
+      @authors.each do |author|
+        author_data << author.to_hash
+      end
+      file.write(author_data.to_json)
+    end
+  end
+
+  def save_game_data
+    game_data = []
+    File.open('game.json', 'w') do |file|
+      @games.each do |game|
+        game_data << game.to_hash
+      end
+      file.write(game_data.to_json)
+    end
   end
 end

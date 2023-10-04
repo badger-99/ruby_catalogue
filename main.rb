@@ -48,6 +48,7 @@ class Main
       @app.save_data
       puts 'Data saved.'
       puts 'Thank you for using our application!'
+      @app.save_data
     else
       puts 'invalid'
     end
