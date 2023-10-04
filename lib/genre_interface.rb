@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'genre'
 
 class GenreInterface
@@ -15,6 +16,25 @@ class GenreInterface
   def show_genres(genre_array)
     genre_array.each_with_index do |genre, index|
       puts "#{index + 1}. #{genre.name}"
+    end
+  end
+
+  def save_genres_to_file
+    genre_data = @genre_list.map(&:to_hash)
+    File.open('genres.json', 'w') do |file|
+      file.puts JSON.generate(genre_data)
+    end
+  end
+
+  def load_genres_from_file
+    return if File.size?('genres.json').nil?
+
+    JSON.parse(File.read('genres.json')).each do |genre_hash|
+      id = genre_hash['id']
+      name = genre_hash['name']
+      genre = Genre.new(name)
+      genre.id = id
+      add_genre_to_list(genre)
     end
   end
 
