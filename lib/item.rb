@@ -2,7 +2,7 @@ require 'date'
 require_relative 'genre'
 
 class Item
-  attr_accessor :publish_date, :label
+  attr_accessor :publish_date, :label, :author
   attr_reader :genre
 
   def initialize(date)
@@ -10,6 +10,7 @@ class Item
     @publish_date = Date.parse(date)
     @archived = false
     @genre = nil
+    @author = nil
   end
 
   def add_genre(genre)
