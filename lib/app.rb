@@ -1,11 +1,16 @@
 require 'date'
 require_relative 'author'
 require_relative 'game'
+require_relative 'file_io'
 
-class App
+class App < FileIO
   attr_accessor :games, :authors
 
   def initialize
+    @games = game_from_json('game.json')
+    @authors = author_from_json('author.json')
+    super
+  end
 
   def game_from_json(file_name)
     game_data = []
@@ -130,5 +135,30 @@ class App
       puts "author name : #{author.first_name} #{author.last_name}"
       puts ''
     end
+  end
+
+  def save_author_data
+    author_data = []
+    File.open('author.json', 'w') do |file|
+      @authors.each do |author|
+        author_data << author.to_hash
+      end
+      file.write(author_data.to_json)
+    end
+  end
+
+  def save_game_data
+    game_data = []
+    File.open('game.json', 'w') do |file|
+      @games.each do |game|
+        game_data << game.to_hash
+      end
+      file.write(game_data.to_json)
+    end
+  end
+
+  def save_data
+    save_author_data
+    save_game_data
   end
 end
