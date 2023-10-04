@@ -8,10 +8,11 @@ require_relative 'file_io'
 
 class App < FileIO
   attr_accessor :games, :authors, :books, :labels
+
   def initialize
     @games = game_from_json('game.json')
     @authors = author_from_json('author.json')
-     @books = []
+    @books = []
     @labels = []
     @album_interface = AlbumInterface.new
     super
