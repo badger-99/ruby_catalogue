@@ -21,12 +21,12 @@ class GenreInterface
   private
 
   def add_genre_to_list(genre)
-    match = @genre_list.select { |item| item.name == genre.name }
-    if match.empty?
+    match = @genre_list.find { |item| item.name == genre.name }
+    if match.nil?
       @genre_list.push(genre)
       genre
     else
-      match[0]
+      match
     end
   end
 end
