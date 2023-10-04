@@ -3,6 +3,7 @@ require_relative 'author'
 require_relative 'game'
 require_relative 'book'
 require_relative 'label'
+require_relative 'music_album_interface'
 
 class App
   attr_accessor :games, :authors, :books, :labels
@@ -12,6 +13,7 @@ class App
     @authors = []
     @books = []
     @labels = []
+    @album_interface = AlbumInterface.new
   end
 
   def add_book
@@ -43,7 +45,9 @@ class App
   end
 
   def add_music_album
-    # ** add music album logic
+    puts "\n"
+    @album_interface.create_album
+    puts "\n"
   end
 
   def author_data_feed
@@ -62,13 +66,15 @@ class App
       puts ''
       puts 'Invalid name format' unless check_string?(author_last_name)
     end
-    @authors << Author.new(author_first_name, author_last_name)
+    author = Author.new(author_first_name, author_last_name)
+    @authors << author
+    author
   end
 
   def add_game
     publish_date = ''
     until check_date?(publish_date)
-      print 'Enter publish date [YYYY-MM-DD] :'
+      print 'Enter publish date [YYYY-MM-DD] : '
       publish_date = gets.chomp
       puts ''
       puts 'Invalid date' unless check_date?(publish_date)
@@ -76,14 +82,14 @@ class App
 
     last_played_at = ''
     until check_date?(last_played_at) && date_compare(publish_date, last_played_at)
-      print 'Enter last played date [YYYY-MM-DD] :'
+      print 'Enter last played date [YYYY-MM-DD] : '
       last_played_at = gets.chomp
       puts ''
       puts 'Invalid date, should be greater then publish date' unless check_date?(publish_date) && date_compare(
         publish_date, last_played_at
       )
     end
-    print 'Is it mutliplayer [Y/N] :'
+    print 'Is it mutliplayer [Y/N] : '
     multiplayer = gets.chomp == 'Y'
     puts ''
     games << Game.new(author_data_feed, publish_date, last_played_at, multiplayer)
@@ -98,7 +104,7 @@ class App
   end
 
   def check_date?(date_string)
-    date_string.match(/^\d{4}-\d{2}-\d{2}$/)
+    date_string.match?(/^\d{4}-\d{2}-\d{2}$/)
   end
 
   def list_books
@@ -117,7 +123,9 @@ class App
   end
 
   def list_music_albums
-    # TODO: list music albums
+    puts "\n"
+    @album_interface.show_music_albums
+    puts "\n"
   end
 
   def list_games
@@ -133,7 +141,9 @@ class App
   end
 
   def list_geners
-    # TODO: list geners
+    puts "\n"
+    @album_interface.show_album_genres
+    puts "\n"
   end
 
   def list_labels
@@ -150,8 +160,7 @@ class App
     @authors.each_with_index do |author, _index|
       puts ''
       puts "author id : #{author.id}"
-      puts "first name : #{author.name}"
-      puts "last name : #{author.last_name}"
+      puts "author name : #{author.first_name} #{author.last_name}"
       puts ''
     end
   end
