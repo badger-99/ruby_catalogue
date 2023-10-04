@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'music_album'
 require_relative 'genre_interface'
 
@@ -46,6 +47,34 @@ class AlbumInterface
       puts 'There are no recorded Genres in the collection'
     else
       @genre_interface.show_genres(array)
+    end
+  end
+
+  def save_genres_and_albums_to_file
+    @genre_interface.save_genres_to_file
+    album_data = @albumn_list.map(&:to_hash)
+    File.open('music_albums.json', 'w') do |file|
+      file.puts JSON.generate(album_data)
+    end
+  end
+
+  def load_genres_and_albums_from_file
+    @genre_interface.load_genres_from_file
+
+    return if File.size?('music_albums.json').nil?
+
+    JSON.parse(File.read('music_albums.json')).each do |album_hash|
+      id = album_hash['id']
+      date = album_hash['date']
+      title = album_hash['title']
+      artist = album_hash['artist']
+      genre_name = album_hash['genre_name']
+      on_spotify = album_hash['on_spotify']
+
+      genre = @genre_interface.genre_list.find { |item| item.name == genre_name }
+      album = MusicAlbum.new(date, title, artist, genre, on_spotify)
+      album.id = id
+      @albumn_list.push(album)
     end
   end
 
