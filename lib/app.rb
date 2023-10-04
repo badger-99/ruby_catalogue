@@ -1,6 +1,7 @@
 require 'date'
 require_relative 'author'
 require_relative 'game'
+require_relative 'music_album_interface'
 
 class App
   attr_accessor :games, :authors
@@ -8,6 +9,7 @@ class App
   def initialize
     @games = []
     @authors = []
+    @album_interface = AlbumInterface.new
   end
 
   def add_book
@@ -15,7 +17,9 @@ class App
   end
 
   def add_music_album
-    # ** add music album logic
+    puts "\n"
+    @album_interface.create_album
+    puts "\n"
   end
 
   def author_data_feed
@@ -80,7 +84,9 @@ class App
   end
 
   def list_music_albums
-    # TODO: list music albums
+    puts "\n"
+    @album_interface.show_music_albums
+    puts "\n"
   end
 
   def list_games
@@ -96,7 +102,9 @@ class App
   end
 
   def list_geners
-    # TODO: list geners
+    puts "\n"
+    @album_interface.show_album_genres
+    puts "\n"
   end
 
   def list_labels
