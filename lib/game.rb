@@ -10,6 +10,18 @@ class Game < Item
     add_author(author)
   end
 
+  def to_hash
+    {
+      'author' => {
+        'first_name' => author.first_name,
+        'last_name' => author.last_name
+      },
+      'publish_date' => publish_date.to_s,
+      'last_played_at' => last_played_at,
+      'multiplayer' => multiplayer
+    }
+  end
+
   private
 
   def can_be_archived?
