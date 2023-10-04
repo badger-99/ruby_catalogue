@@ -1,6 +1,6 @@
 require_relative 'genre'
 
-class GenreManager
+class GenreInterface
   attr_reader :genre_list
 
   def initialize
