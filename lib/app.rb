@@ -25,8 +25,6 @@ class App
     books << Book.new(genre, author, label, publish_date, publisher, cover_state)
   end
 
-  private
-
   def get_valid_input(prompt, validation_method)
     input = ''
     until validation_method.call(input)
