@@ -15,64 +15,33 @@ class App
   end
 
   def add_book
-    genre = ''
-    until check_string?(genre)
-      print 'Enter book genre : '
-      genre = gets.chomp
+    genre = get_valid_input('Enter book genre : ', method(:check_string?))
+    author = author_data_feed
+    label = create_label
+    publish_date = get_valid_input('Enter publish date [YYYY-MM-DD] : ', method(:check_date?))
+    publisher = get_valid_input('Enter publisher : ', method(:check_string?))
+    cover_state = get_valid_input('Enter cover state : ', method(:check_string?))
+
+    books << Book.new(genre, author, label, publish_date, publisher, cover_state)
+  end
+
+  private
+
+  def get_valid_input(prompt, validation_method)
+    input = ''
+    until validation_method.call(input)
+      print prompt
+      input = gets.chomp
       puts ''
-      puts 'Invalid genre format' unless check_string?(genre)
+      puts 'Invalid input format' unless validation_method.call(input)
     end
+    input
+  end
 
-    author_data_feed
-
-    label_title = ''
-    until check_string?(label_title)
-      print 'Enter label title : '
-      label_title = gets.chomp
-      puts ''
-      puts 'Invalid label title format' unless check_string?(label_title)
-    end
-
-    label_color = ''
-    until check_string?(label_color)
-      print 'Enter label color : '
-      label_color = gets.chomp
-      puts ''
-      puts 'Invalid label color format' unless check_string?(label_color)
-    end
-
-    publish_date = ''
-    until check_date?(publish_date)
-      print 'Enter publish date [YYYY-MM-DD] : '
-      publish_date = gets.chomp
-      puts ''
-      puts 'Invalid date' unless check_date?(publish_date)
-    end
-
-    publisher = ''
-    until check_string?(publisher)
-      print 'Enter publisher : '
-      publisher = gets.chomp
-      puts ''
-      puts 'Invalid publisher format' unless check_string?(publisher)
-    end
-
-    cover_state = ''
-    until check_string?(cover_state)
-      print 'Enter cover state : '
-      cover_state = gets.chomp
-      puts ''
-      puts 'Invalid cover state format' unless check_string?(cover_state)
-    end
-
-    books << Book.new(
-      genre,
-      authors.last,
-      Label.new(label_title, label_color),
-      publish_date,
-      publisher,
-      cover_state
-    )
+  def create_label
+    title = get_valid_input('Enter label title : ', method(:check_string?))
+    color = get_valid_input('Enter label color : ', method(:check_string?))
+    Label.new(title, color)
   end
 
   def add_music_album
