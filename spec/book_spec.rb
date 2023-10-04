@@ -1,9 +1,12 @@
 require_relative '../lib/book'
+require_relative '../lib/author'
+require_relative '../lib/label'
+require_relative '../lib/genre'
 
 RSpec.describe Book do
-  let(:genre) { instance_double('Genre') }
-  let(:author) { instance_double('Author') }
-  let(:label) { instance_double('Label') }
+  let(:genre) { Genre.new('Fiction') }
+  let(:author) { Author.new('John', 'Doe') }
+  let(:label) { Label.new('Bestseller', 'Red') }
   let(:date) { '2023-01-01' }
   let(:publisher) { 'Example Publisher' }
   let(:cover_state) { 'Good' }

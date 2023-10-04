@@ -1,9 +1,10 @@
-require_relative '../app/label'
+require_relative '../lib/label'
+require_relative '../lib/item'
 
 RSpec.describe Label do
   let(:title) { 'Example Title' }
   let(:color) { 'Blue' }
-  let(:item) { instance_double('Item') }
+  let(:item) { Item.new('2022-01-01') }
 
   describe '#initialize' do
     it 'should initialize a Label object with given parameters' do
