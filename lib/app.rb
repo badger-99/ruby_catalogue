@@ -42,7 +42,7 @@ class App
   def add_game
     publish_date = ''
     until check_date?(publish_date)
-      print 'Enter publish date [YYYY-MM-DD] :'
+      print 'Enter publish date [YYYY-MM-DD] : '
       publish_date = gets.chomp
       puts ''
       puts 'Invalid date' unless check_date?(publish_date)
@@ -50,17 +50,18 @@ class App
 
     last_played_at = ''
     until check_date?(last_played_at) && date_compare(publish_date, last_played_at)
-      print 'Enter last played date [YYYY-MM-DD] :'
+      print 'Enter last played date [YYYY-MM-DD] : '
       last_played_at = gets.chomp
       puts ''
       puts 'Invalid date, should be greater then publish date' unless check_date?(publish_date) && date_compare(
         publish_date, last_played_at
       )
     end
-    print 'Is it mutliplayer [Y/N] :'
+    print 'Is it mutliplayer [Y/N] : '
     multiplayer = gets.chomp == 'Y'
     puts ''
     games << Game.new(author_data_feed, publish_date, last_played_at, multiplayer)
+
   end
 
   def check_string?(string)
@@ -107,8 +108,7 @@ class App
     @authors.each_with_index do |author, _index|
       puts ''
       puts "author id : #{author.id}"
-      puts "first name : #{author.name}"
-      puts "last name : #{author.last_name}"
+      puts "author name : #{author.first_name} #{author.last_name}"
       puts ''
     end
   end
