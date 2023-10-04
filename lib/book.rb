@@ -1,4 +1,5 @@
 require_relative 'item'
+
 class Book < Item
   attr_accessor :publisher, :cover_state
 
@@ -11,6 +12,8 @@ class Book < Item
     add_genre(genre)
     can_be_archived?
   end
+
+  private
 
   def can_be_archived?
     super || cover_state == 'bad'
