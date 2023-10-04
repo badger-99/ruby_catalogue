@@ -61,7 +61,6 @@ class App
     multiplayer = gets.chomp == 'Y'
     puts ''
     games << Game.new(author_data_feed, publish_date, last_played_at, multiplayer)
-
   end
 
   def check_string?(string)
@@ -73,7 +72,7 @@ class App
   end
 
   def check_date?(date_string)
-    date_string.match(/^\d{4}-\d{2}-\d{2}$/)
+    date_string.match?(/^\d{4}-\d{2}-\d{2}$/)
   end
 
   def list_books
