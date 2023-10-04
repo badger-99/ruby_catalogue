@@ -20,11 +20,14 @@ class AlbumInterface
     title = gets.chomp
     print 'Enter album artist: '
     artist = gets.chomp
-    genre = @genre_interface.create_genre
+    puts 'Enter the genre (press ENTER if you don\'t know it): '
+    name = gets.chomp.capitalize
+    genre = @genre_interface.create_genre(name)
     on_spotify = on_spotify?
 
     album = MusicAlbum.new(date, title, artist, genre, on_spotify)
     @albumn_list.push(album)
+    puts 'Album saved.'
   end
 
   def show_music_albums
