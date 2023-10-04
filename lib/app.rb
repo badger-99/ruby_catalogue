@@ -119,4 +119,12 @@ class App
       puts ''
     end
   end
+
+  def save_data
+    @album_interface.save_genres_and_albums_to_file
+  end
+
+  def load_data
+    @album_interface.load_genres_and_albums_from_file
+  end
 end
