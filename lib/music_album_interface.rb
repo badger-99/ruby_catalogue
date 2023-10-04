@@ -1,10 +1,10 @@
 require_relative 'music_album'
 require_relative 'genre_interface'
 
-class AlbumManager
+class AlbumInterface
   def initialize
     @albumn_list = []
-    @genre_manager = GenreManager.new
+    @genre_interface = GenreInterface.new
   end
 
   def create_album
@@ -20,7 +20,7 @@ class AlbumManager
     title = gets.chomp
     print 'Enter album artist: '
     artist = gets.chomp
-    genre = @genre_manager.create_genre
+    genre = @genre_interface.create_genre
     on_spotify = on_spotify?
 
     album = MusicAlbum.new(date, title, artist, genre, on_spotify)
@@ -38,11 +38,11 @@ class AlbumManager
   end
 
   def show_album_genres
-    array = @genre_manager.genre_list
+    array = @genre_interface.genre_list
     if array.empty?
       puts 'There are no recorded Genres in the collection'
     else
-      @genre_manager.show_genres(array)
+      @genre_interface.show_genres(array)
     end
   end
 

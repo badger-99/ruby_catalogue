@@ -9,7 +9,7 @@ class App
   def initialize
     @games = []
     @authors = []
-    @album_manager = AlbumManager.new
+    @album_interface = AlbumInterface.new
   end
 
   def add_book
@@ -18,7 +18,7 @@ class App
 
   def add_music_album
     puts "\n"
-    @album_manager.create_album
+    @album_interface.create_album
     puts "\n"
   end
 
@@ -83,7 +83,7 @@ class App
 
   def list_music_albums
     puts "\n"
-    @album_manager.show_music_albums
+    @album_interface.show_music_albums
     puts "\n"
   end
 
@@ -101,7 +101,7 @@ class App
 
   def list_geners
     puts "\n"
-    @album_manager.show_album_genres
+    @album_interface.show_album_genres
     puts "\n"
   end
 
