@@ -41,7 +41,9 @@ class App
   def create_label
     title = get_valid_input('Enter label title : ', method(:check_string?))
     color = get_valid_input('Enter label color : ', method(:check_string?))
-    Label.new(title, color)
+    label = Label.new(title, color)
+    labels << label
+    label
   end
 
   def add_music_album
