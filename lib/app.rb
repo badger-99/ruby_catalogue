@@ -34,7 +34,9 @@ class App
       puts ''
       puts 'Invalid name format' unless check_string?(author_last_name)
     end
-    @authors << Author.new(author_first_name, author_last_name)
+    author = Author.new(author_first_name, author_last_name)
+    @authors << author
+    author
   end
 
   def add_game
