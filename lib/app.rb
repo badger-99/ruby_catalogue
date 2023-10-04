@@ -5,11 +5,13 @@ require_relative 'book'
 require_relative 'label'
 
 class App
-  attr_accessor :games, :authors
+  attr_accessor :games, :authors, :books, :labels
 
   def initialize
     @games = []
     @authors = []
+    @books = []
+    @labels = []
   end
 
   def add_book
@@ -64,12 +66,12 @@ class App
     end
 
     books << Book.new(
-      genre: genre,
-      author: authors.last,
-      label: Label.new(label_title, label_color),
-      date: publish_date,
-      publisher: publisher,
-      cover_state: cover_state
+      genre,
+      authors.last,
+      Label.new(label_title, label_color),
+      publish_date,
+      publisher,
+      cover_state
     )
   end
 
@@ -137,13 +139,14 @@ class App
       puts ''
       puts "Book #{index + 1}"
       puts "Genre: #{book.genre}"
-      puts "Author: #{book.author.first_name} #{book.author.last_name}"
+      puts "Author: #{book.author.first_name} #{book.author.last_name}" if book.respond_to?(:author) && book.author
       puts "Label: #{book.label.title} (#{book.label.color})"
       puts "Publish Date: #{book.publish_date}"
       puts "Publisher: #{book.publisher}"
       puts "Cover State: #{book.cover_state}"
-      puts "Archived: #{book.archived ? 'YES' : 'NO'}"
+      puts "Archived: #{book.can_be_archived? ? 'YES' : 'NO'}"
       puts ''
+    end
   end
 
   def list_music_albums
