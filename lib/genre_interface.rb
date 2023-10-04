@@ -7,9 +7,7 @@ class GenreInterface
     @genre_list = []
   end
 
-  def create_genre
-    puts 'Enter the genre (press ENTER if you don\'t know it): '
-    name = gets.chomp.capitalize
+  def create_genre(name)
     user_genre = name.empty? ? Genre.new : Genre.new(name)
     add_genre_to_list(user_genre)
   end
