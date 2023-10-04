@@ -1,19 +1,49 @@
 require 'date'
 require_relative 'author'
 require_relative 'game'
+require_relative 'book'
+require_relative 'label'
 require_relative 'music_album_interface'
 
 class App
-  attr_accessor :games, :authors
+  attr_accessor :games, :authors, :books, :labels
 
   def initialize
     @games = []
     @authors = []
+    @books = []
+    @labels = []
     @album_interface = AlbumInterface.new
   end
 
   def add_book
-    # ** add book logic
+    genre = get_valid_input('Enter book genre : ', method(:check_string?))
+    author = author_data_feed
+    label = create_label
+    publish_date = get_valid_input('Enter publish date [YYYY-MM-DD] : ', method(:check_date?))
+    publisher = get_valid_input('Enter publisher : ', method(:check_string?))
+    cover_state = get_valid_input('Enter cover state : ', method(:check_string?))
+
+    books << Book.new(genre, author, label, publish_date, publisher, cover_state)
+  end
+
+  def get_valid_input(prompt, validation_method)
+    input = ''
+    until validation_method.call(input)
+      print prompt
+      input = gets.chomp
+      puts ''
+      puts 'Invalid input format' unless validation_method.call(input)
+    end
+    input
+  end
+
+  def create_label
+    title = get_valid_input('Enter label title : ', method(:check_string?))
+    color = get_valid_input('Enter label color : ', method(:check_string?))
+    label = Label.new(title, color)
+    labels << label
+    label
   end
 
   def add_music_album
@@ -80,7 +110,18 @@ class App
   end
 
   def list_books
-    # TODO: list books
+    books.each_with_index do |book, index|
+      puts ''
+      puts "Book #{index + 1}"
+      puts "Genre: #{book.genre}"
+      puts "Author: #{book.author.first_name} #{book.author.last_name}" if book.respond_to?(:author) && book.author
+      puts "Label: #{book.label.title} (#{book.label.color})"
+      puts "Publish Date: #{book.publish_date}"
+      puts "Publisher: #{book.publisher}"
+      puts "Cover State: #{book.cover_state}"
+      puts "Archived: #{book.can_be_archived? ? 'YES' : 'NO'}"
+      puts ''
+    end
   end
 
   def list_music_albums
@@ -108,7 +149,13 @@ class App
   end
 
   def list_labels
-    # TODO: list labels
+    labels.each_with_index do |label, index|
+      puts ''
+      puts "Label #{index + 1}"
+      puts "Title: #{label.title}"
+      puts "Color: #{label.color}"
+      puts ''
+    end
   end
 
   def list_authors
