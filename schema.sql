@@ -14,6 +14,13 @@ CREATE TABLE music_albums (
   genre_id INT
   ADD CONSTRAINT fk_genre FOREIGN KEY (genre_id) REFERENCES genre(id)
 );
+
+CREATE TABLE author(
+	id INT PRIMARY KEY SERIAL,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50)
+);
+
 CREATE TABLE game(
 	id INT PRIMARY KEY SERIAL,
 	last_played_at DATE,
