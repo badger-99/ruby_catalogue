@@ -28,3 +28,9 @@ CREATE TABLE game(
 	author_id INT,
 	FOREIGN KEY (author_id) REFERENCES author(id)
 );
+
+CREATE TABLE label(
+	id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	title VARCHAR(250),
+	color VARCHAR(250)
+);
