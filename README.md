@@ -8,6 +8,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+- [📽 Video Presentation ](#video-presentation)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -34,8 +35,6 @@
   </ul>
 </details>
 
-<!-- Features -->
-
 ### Key Features <a name="key-features"></a>
 
 - **User-input error validation**
@@ -43,7 +42,11 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
+## 📽 Video Presentation <a name="video-presentation"></a>
+
+- [Video Presentation]() - None
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
@@ -71,13 +74,17 @@ Clone this repository to your desired folder:
 
 ### Usage
 
-To run the project, execute the following command:
+Run `ruby main.rb` in the termnial to start the UI and proceede to view or record your books, music albums, or games.
 
-```sh
-  ruby main.rb
-```
+### Run tests
 
-<!-- AUTHORS -->
+Use `rspec` in the terminal to run the [tests](./spec).
+
+### Deployment
+
+This project does not need to be deployed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 👥 Authors <a name="authors"></a>
 
@@ -101,7 +108,6 @@ To run the project, execute the following command:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
 
@@ -110,7 +116,6 @@ To run the project, execute the following command:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTRIBUTING -->
 
 ## 🤝 Contributing <a name="contributing"></a>
 
@@ -118,7 +123,6 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- SUPPORT -->
 
 ## ⭐️ Show your support <a name="support"></a>
 
@@ -126,7 +130,6 @@ If you like this project please give it a star ⭐️.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ACKNOWLEDGEMENTS -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
@@ -134,7 +137,6 @@ I would like to thank <a href="https://www.microverse.org/">Microverse</a> for p
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
 
