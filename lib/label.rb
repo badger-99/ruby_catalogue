@@ -16,7 +16,7 @@ class Label
       'id' => @id,
       'title' => @title,
       'color' => @color,
-      'items' => @items.map { |item| item.id }
+      'items' => @items.map(&:id)
     }
   end
 
