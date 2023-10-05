@@ -23,6 +23,7 @@ CREATE TABLE author(
 
 CREATE TABLE game(
 	id INT PRIMARY KEY SERIAL,
+	publish_date DATE,
 	last_played_at DATE,
 	multiplayer BOOLEAN,
 	author_id INT,
