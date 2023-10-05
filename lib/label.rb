@@ -11,6 +11,15 @@ class Label
     @items = []
   end
 
+  def to_hash
+    {
+      'id' => @id,
+      'title' => @title,
+      'color' => @color,
+      'items' => @items.map { |item| item.to_hash }
+    }
+  end
+
   def add_item(item)
     @items << item
     item.label = self
