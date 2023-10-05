@@ -28,3 +28,19 @@ CREATE TABLE game(
 	author_id INT,
 	FOREIGN KEY (author_id) REFERENCES author(id)
 );
+
+CREATE TABLE label(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	title VARCHAR(250),
+	color VARCHAR(250),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE book(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	publisher VARCHAR(250),
+	publish_date DATE,
+	cover_state VARCHAR(250),
+	label_id INT REFERENCES label(id),
+	PRIMARY KEY (id)
+);
