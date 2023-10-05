@@ -19,9 +19,9 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 Catalog of my things <a name="about-project"></a>
+# 📖 Ruby Catalogue <a name="about-project"></a>
 
-**Catalog of my things** is a ruby application for storing information about book, music and games.
+**Ruby Catalogue** is a ruby-based application for storing information about books, music albums and games.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -38,9 +38,8 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **Book Items**
-- **Game Items**
-- **Music Items**
+- **User-input error validation**
+- **Data persistance across user sessions**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -50,19 +49,24 @@
 
 To get a local copy up and running, follow these steps.
 
+- Clone this project.
+- Open it in VS code.
+- Run `bundle install` to install the dependencies
+
 ### Prerequisites
 
 In order to run this project you need:
 
-- Ruby
-- VS code (any code editor of your choice)
+- [Ruby 3.2 or later with devkit](https://rubyinstaller.org/downloads/).
+- [Ruby linters](https://github.com/microverseinc/linters-config/tree/master/ruby) - Mainly for consistent styling.
+- [VS code](https://code.visualstudio.com/Download), or a code editor of your choice.
 
 ### Setup
 
 Clone this repository to your desired folder:
 
 ```sh
-  git clone git@github.com:badger-99/ruby_group_capstone.git
+  git clone https://github.com/badger-99/ruby_group_capstone.git
 ```
 
 ### Usage
@@ -77,22 +81,22 @@ To run the project, execute the following command:
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Alfred**
+👤 **Alfred M.**
 
 - GitHub: [@badger-99](https://github.com/badger-99)
-- Twitter: [@alpeter91](https://twitter.com/alpeter9)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/alpeter91-7b41a0270/)
+- X: [@AlfredMkg](https://twitter.com/AlfredMkg)
+- LinkedIn: [in/alfredmkg](https://www.linkedin.com/in/alfredmkg)
 
 👤 **malikhaiderkhan**
 
 - GitHub: [@malikhaiderkhan](https://github.com/malikhaiderkhan)
-- Twitter: [@malikhaiderkha](https://twitter.com/malikhaiderkha)
+- X: [@malikhaiderkha](https://twitter.com/malikhaiderkha)
 - LinkedIn: [@malikhaiderkhan](https://www.linkedin.com/in/malik-haider-khan-b53188140)
 
 👤 **Devendra-alt**
 
 - GitHub: [@devendra-alt](https://github.com/devendra-alt)
-- Twitter: [@Devendra5101](https://twitter.com/Devendra5101)
+- X: [@Devendra5101](https://twitter.com/Devendra5101)
 - LinkedIn: [Devendra Mulewa](https://linkedin.com/in/devendramulewa)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -101,8 +105,8 @@ To run the project, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Storing Data in Database**
-- [ ] **Adding for methods**
+- **Storing Data in Database**
+- **Removing Entries from the catalogue**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -110,9 +114,7 @@ To run the project, execute the following command:
 
 ## 🤝 Contributing <a name="contributing"></a>
 
-Contributions, issues, and feature requests are welcome!
-
-Feel free to check the [issues page](../../issues/).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/badger-99/ruby_group_capstone/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +130,7 @@ If you like this project please give it a star ⭐️.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I want to thank @microverse.
+I would like to thank <a href="https://www.microverse.org/">Microverse</a> for providing the resources and guidelines that made this project possible.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -136,6 +138,6 @@ I want to thank @microverse.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
