@@ -1,0 +1,5 @@
+-- Genre table
+CREATE TABLE genre(
+	id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	name VARCHAR(255)
+);
