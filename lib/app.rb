@@ -12,10 +12,37 @@ class App < FileIO
   def initialize
     @games = game_from_json('game.json')
     @authors = author_from_json('author.json')
-    @books = []
-    @labels = []
+    @books = books_from_json('books.json')
+    @labels = labels_from_json('labels.json')
     @album_interface = AlbumInterface.new
     super
+  end
+
+  def books_from_json(file_name)
+    book_data = []
+    if file_exist?(file_name)
+      from_json(File.read(file_name)).each do |book|
+        book_data << Book.new(
+          Genre.new(book['genre']),
+          Author.new(book['author']['first_name'], book['author']['last_name']),
+          Label.new(book['label']['title'], book['label']['color']),
+          book['publish_date'],
+          book['publisher'],
+          book['cover_state']
+        )
+      end
+    end
+    book_data
+  end
+
+  def labels_from_json(file_name)
+    label_data = []
+    if file_exist?(file_name)
+      from_json(File.read(file_name)).each do |label|
+        label_data << Label.new(label['title'], label['color'])
+      end
+    end
+    label_data
   end
 
   def game_from_json(file_name)
@@ -193,9 +220,21 @@ class App < FileIO
   end
 
   def save_data
+    save_books_data
+    save_labels_data
     @album_interface.save_genres_and_albums_to_file
     save_author_data
     save_game_data
+  end
+
+  def save_books_data
+    books_data = books.map(&:to_hash)
+    File.write('books.json', books_data.to_json)
+  end
+
+  def save_labels_data
+    labels_data = labels.map(&:to_hash)
+    File.write('labels.json', labels_data.to_json)
   end
 
   def load_data

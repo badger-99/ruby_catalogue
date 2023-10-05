@@ -13,7 +13,20 @@ class Book < Item
     can_be_archived?
   end
 
-  private
+  def to_hash
+    {
+      'id' => @id,
+      'publish_date' => @publish_date.to_s,
+      'archived' => @archived,
+      'genre' => @genre,
+      'author' => @author.to_hash,
+      'publisher' => @publisher,
+      'cover_state' => @cover_state,
+      'label' => @label.to_hash
+    }
+  end
+
+  # private
 
   def can_be_archived?
     super || cover_state == 'bad'
