@@ -16,7 +16,7 @@ class Label
       'id' => @id,
       'title' => @title,
       'color' => @color,
-      'items' => @items.map { |item| item.to_hash }
+      'items' => @items.map { |item| item.id }
     }
   end
 

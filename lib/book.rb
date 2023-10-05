@@ -22,7 +22,7 @@ class Book < Item
       'author' => @author.to_hash,
       'publisher' => @publisher,
       'cover_state' => @cover_state,
-      'label' => @label
+      'label' => @label.to_hash
     }
   end
 
