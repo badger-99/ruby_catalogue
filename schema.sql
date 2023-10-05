@@ -38,7 +38,8 @@ CREATE TABLE label(
 
 CREATE TABLE book(
 	id INT GENERATED ALWAYS AS IDENTITY,
-	publisher VARCHAR(250)
+	publisher VARCHAR(250),
+	publish_date DATE,
 	cover_state VARCHAR(250),
 	label_id INT REFERENCES label(id),
 	PRIMARY KEY (id)
