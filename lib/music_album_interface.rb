@@ -9,10 +9,10 @@ class AlbumInterface
   end
 
   def create_album
-    print 'Enter a date [DD-MM-YYYY]: '
+    print 'Enter a date [YYYY-MM-DD]: '
     date = gets.chomp
 
-    until date.match?(/\A\d{2}-\d{2}-\d{4}\z/) && date != '00-00-0000'
+    until date.match?(/\A\d{4}-\d{2}-\d{2}\z/) && date != '00-00-0000'
       puts "\nEnter a valid date in the shown format."
       date = gets.chomp
     end
