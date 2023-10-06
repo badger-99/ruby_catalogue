@@ -13,10 +13,6 @@ class MusicAlbum < Item
     add_genre(genre)
   end
 
-  def move_to_archive
-    @archived = can_be_archived? && @on_spotify
-  end
-
   def to_hash
     {
       'id' => @id,
@@ -26,5 +22,11 @@ class MusicAlbum < Item
       'genre_name' => @genre.name,
       'on_spotify' => @on_spotify
     }
+  end
+
+  private
+
+  def can_be_archived?
+    super && @on_spotify
   end
 end
