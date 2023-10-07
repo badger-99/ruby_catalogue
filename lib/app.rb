@@ -45,29 +45,6 @@ class App < FileIO
     label_data
   end
 
-  def game_from_json(file_name)
-    game_data = []
-    if file_exist?(file_name)
-      from_json(File.read(file_name)).each do |game|
-        game_author = game['author']
-        author = Author.new(game_author['first_name'], game_author['last_name'])
-        game = Game.new(author, game['publish_date'], game['last_played_at'], game['multiplayer'])
-        game_data << game
-      end
-    end
-    game_data
-  end
-
-  def author_from_json(file_name)
-    author_data = []
-    if file_exist?(file_name)
-      from_json(File.read(file_name)).each do |author|
-        author_data << Author.new(author['first_name'], author['last_name'])
-      end
-    end
-    author_data
-  end
-
   def add_book
     genre = get_valid_input('Enter book genre : ', method(:check_string?))
     author = author_data_feed
@@ -133,20 +110,19 @@ class App < FileIO
       puts ''
       puts 'Invalid date' unless check_date?(publish_date)
     end
-
     last_played_at = ''
     until check_date?(last_played_at) && date_compare(publish_date, last_played_at)
       print 'Enter last played date [YYYY-MM-DD] : '
       last_played_at = gets.chomp
       puts ''
-      puts 'Invalid date, should be greater then publish date' unless check_date?(publish_date) && date_compare(
-        publish_date, last_played_at
-      )
+      puts 'Invalid date, should be greater then publish date' unless check_date?(publish_date) &&
+                                                                      date_compare(publish_date, last_played_at)
     end
     print 'Is it mutliplayer [Y/N] : '
     multiplayer = gets.chomp == 'Y'
     puts ''
     games << Game.new(author_data_feed, publish_date, last_played_at, multiplayer)
+    puts "Game Created successfully \n"
   end
 
   def check_string?(string)
