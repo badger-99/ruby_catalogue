@@ -1,4 +1,4 @@
-# RUBY GROUP CAPSTONE
+# RUBY CATALOGUE
 
 <a name="readme-top"></a>
 
